@@ -10,7 +10,16 @@ producer = KafkaProducer(
 for i in range(20):
     data = {
         "number": i,
-        "harish field": "some value to test so that i can check the size of the log ffile in the tmp kafka demo folder, which would reveal me the logic behind the working of kafka after each insertion. hope you get it. ZZZ!!!zzzzzzzzzzzzzxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA11111111111111111111111111111111",
+        "some field": "some value",
     }
-    producer.send("demotopic", value=data)
-    sleep(3)
+    future = producer.send("demotopic", value=data)
+
+    # To avoid race condition with producer.send() call do future.get() following send(),
+    # so that we don't need to sleep(1) for every send(), else sleep(1) to be used.
+    try:
+        record_metadata = future.get(timeout=10)
+        print("meta:", record_metadata)
+    except:
+        # Decide what to do if produce request failed...
+        print("error in sending the message")
+        pass
