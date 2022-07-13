@@ -6,6 +6,9 @@
 
 ./bin/kafka-topics.sh --create --topic demotopic --bootstrap-server localhost:9092
 
-
 https://kafka.apache.org/quickstart
 
+
+## Python packages required
+
+pip3 install kafka-python
