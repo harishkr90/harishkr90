@@ -8,4 +8,5 @@ pip freeze > requirements.txt
 docker build -t my_first_app_image .
 
 # run docker compose file and bring up myapp, mongodb, mongodb-ui
-docker-compose -f myapp.yaml up
+docker-compose up -d # (-f filename.yaml) to be added before 'up' if file is not named as docker-compose.yml in the '.' dir
+
