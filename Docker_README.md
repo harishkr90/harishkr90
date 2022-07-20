@@ -24,8 +24,10 @@ docker images
 
 # delete an image
 docker image rm <image_ID> 
-# or 
+## or 
 docker image rm <imageName:TAG> # ex: docker image postgres:10.10
+## or
+docker rmi <imageName:TAG>
 
 # enter into docker command prompt bash interactive-terminal
 docker exec -it <container_ID_HASH> /bin/bash
