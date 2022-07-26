@@ -11,6 +11,9 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      # definition
+      - mongo-data:/data/db
   mongo-ui:
     image: mongo-express
     ports:
@@ -20,3 +23,7 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=harimongodb
     restart: unless-stopped
+volumes:
+  # declaration
+  mongo-data:
+    driver: local
